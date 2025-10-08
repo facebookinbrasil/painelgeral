@@ -361,196 +361,351 @@
                     <div class="w-full">
                         <!-- Emails com Status -->
                         <div class="bg-gray-800 rounded-xl p-6">
-                            <h3 class="text-lg font-semibold text-white mb-4">Emails do Sistema</h3>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-white">Emails do Sistema</h3>
+                                <button onclick="copyAllEmails()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span>Copiar Todos</span>
+                                </button>
+                            </div>
                             <div class="space-y-3 max-h-96 overflow-y-auto" id="emailList">
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email1">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">emanuelvpaulino1@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email1')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email1">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('emanuelvpaulino1@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email1')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email1">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email2">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Mcdomdom39@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email2')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email2">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Mcdomdom39@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email2')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email2">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email3">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino17@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email3')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email3">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino17@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email3')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email3">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email4">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino15@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email4')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email4">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino15@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email4')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email4">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email5">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Cajazeiraspbmemes@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email5')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email5">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Cajazeiraspbmemes@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email5')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email5">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email6">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino29@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email6')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email6">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino29@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email6')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email6">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email7">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino9@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email7')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email7">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino9@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email7')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email7">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email8">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">digitalexbrasil@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email8')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email8">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('digitalexbrasil@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email8')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email8">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email9">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino26@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email9')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email9">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino26@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email9')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email9">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email10">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino27@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email10')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email10">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino27@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email10')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email10">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email11">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino28@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email11')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email11">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino28@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email11')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email11">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email12">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino30@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email12')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email12">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino30@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email12')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email12">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email13">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">emanuelvpaulino31@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email13')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email13">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('emanuelvpaulino31@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email13')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email13">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email14">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino32@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email14')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email14">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino32@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email14')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email14">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email15">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino33@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email15')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email15">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino33@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email15')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email15">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email16">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">Emanuelvpaulino34@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email16')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email16">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('Emanuelvpaulino34@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email16')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email16">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email17">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">narradashistorias5@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email17')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email17">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('narradashistorias5@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email17')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email17">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email18">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">arthurdalmonteregis@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email18')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email18">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('arthurdalmonteregis@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email18')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email18">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email19">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">menezesvictorr1@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email19')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email19">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('menezesvictorr1@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email19')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email19">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email20">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">menezesvictor309@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email20')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email20">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('menezesvictor309@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email20')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email20">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email21">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                                         <span class="text-white text-sm">veomenezes@gmail.com</span>
                                     </div>
-                                    <button onclick="toggleEmailStatus('email21')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email21">
-                                        Ativo
-                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="copyEmail('veomenezes@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="toggleEmailStatus('email21')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email21">
+                                            Ativo
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -941,6 +1096,42 @@
             }
         }
         
+        // Copiar email individual
+        function copyEmail(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                showNotification('Email Copiado', `${email} foi copiado para a área de transferência!`);
+            }).catch(() => {
+                // Fallback para navegadores mais antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Email Copiado', `${email} foi copiado para a área de transferência!`);
+            });
+        }
+        
+        // Copiar todos os emails
+        function copyAllEmails() {
+            const emailElements = document.querySelectorAll('#emailList .text-white.text-sm');
+            const emails = Array.from(emailElements).map(el => el.textContent.trim());
+            const emailList = emails.join('\n');
+            
+            navigator.clipboard.writeText(emailList).then(() => {
+                showNotification('Todos os Emails Copiados', `${emails.length} emails foram copiados para a área de transferência!`);
+            }).catch(() => {
+                // Fallback para navegadores mais antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = emailList;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Todos os Emails Copiados', `${emails.length} emails foram copiados para a área de transferência!`);
+            });
+        }
+        
         // Inicializar
         updateTime();
         setInterval(updateTime, 1000);
@@ -965,5 +1156,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b2961e57205cb7',t:'MTc1OTg5NDUwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b29ad395725cb7',t:'MTc1OTg5NDcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
