@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Acesso Seguro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hover-scale {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .luxury-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particle-float 8s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .keypad-button {
+            transition: all 0.2s ease;
+        }
+        
+        .keypad-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .keypad-button:active {
+            transform: scale(0.95);
+        }
+        
+        .access-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .access-dot.filled {
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body class="h-full gradient-bg overflow-auto">
+    <!-- Partículas flutuantes -->
+    <div id="particles" class="fixed inset-0 pointer-events-none"></div>
+    
+    <div class="min-h-full flex items-center justify-center p-4 relative">
+        <!-- Painel de Acesso -->
+        <div id="accessPanel" class="glass-effect rounded-3xl p-8 w-full max-w-md luxury-shadow fade-in">
+            <!-- Logo/Ícone da Empresa -->
+            <div class="text-center mb-8">
+                <div class="floating-animation inline-block">
+                    <div class="w-20 h-20 mx-auto mb-4 pulse-glow rounded-2xl bg-gradient-to-br from-white to-gray-200 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.4 16 13V16C16 17.4 15.4 18 14.8 18H9.2C8.6 18 8 17.4 8 16V13C8 12.4 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold text-white mb-2">Acesso Seguro</h1>
+                <p class="text-gray-200 text-sm">Digite sua chave de acesso</p>
+            </div>
+            
+            <!-- Display da Chave -->
+            <div class="mb-8">
+                <div class="flex justify-center space-x-3 mb-6">
+                    <div class="access-dot" id="dot1"></div>
+                    <div class="access-dot" id="dot2"></div>
+                    <div class="access-dot" id="dot3"></div>
+                    <div class="access-dot" id="dot4"></div>
+                    <div class="access-dot" id="dot5"></div>
+                    <div class="access-dot" id="dot6"></div>
+                    <div class="access-dot" id="dot7"></div>
+                    <div class="access-dot" id="dot8"></div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-300 text-sm mb-2">Chave inserida:</p>
+                    <div class="glass-effect rounded-lg p-3 font-mono text-lg text-white text-center" id="keyDisplay">
+                        ••••••••
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Teclado Numérico -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button onclick="addDigit('1')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">1</button>
+                <button onclick="addDigit('2')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">2</button>
+                <button onclick="addDigit('3')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">3</button>
+                <button onclick="addDigit('4')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">4</button>
+                <button onclick="addDigit('5')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">5</button>
+                <button onclick="addDigit('6')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">6</button>
+                <button onclick="addDigit('7')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">7</button>
+                <button onclick="addDigit('8')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">8</button>
+                <button onclick="addDigit('9')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">9</button>
+                <button onclick="clearKey()" class="keypad-button glass-effect rounded-xl p-4 text-red-400 text-sm font-semibold">Limpar</button>
+                <button onclick="addDigit('0')" class="keypad-button glass-effect rounded-xl p-4 text-white text-xl font-semibold">0</button>
+                <button onclick="removeDigit()" class="keypad-button glass-effect rounded-xl p-4 text-yellow-400 text-sm font-semibold">←</button>
+            </div>
+            
+            <!-- Botão de Acesso -->
+            <button onclick="checkAccess()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 hover-scale luxury-shadow">
+                <div class="flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                    </svg>
+                    <span>Verificar Acesso</span>
+                </div>
+            </button>
+            
+            <div class="mt-4 text-center">
+                <p class="text-gray-400 text-xs">Sistema protegido por chave de acesso</p>
+            </div>
+        </div>
+        
+        <!-- Painel Principal (Oculto inicialmente) -->
+        <div id="mainPanel" class="w-full max-w-7xl mx-auto p-6 fade-in hidden">
+            <!-- Cabeçalho Profissional -->
+            <header class="glass-effect rounded-2xl p-6 mb-8 luxury-shadow">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Central de Ferramentas IA</h1>
+                        <p class="text-gray-300">Acesse as melhores plataformas de inteligência artificial</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button onclick="showDataSection()" class="glass-effect hover-scale rounded-lg px-4 py-2 text-white text-sm font-medium transition-all duration-300">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <span>Dados</span>
+                            </div>
+                        </button>
+                        <button onclick="toggleEditMode()" id="editButton" class="glass-effect hover-scale rounded-lg px-4 py-2 text-white text-sm font-medium transition-all duration-300">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                <span>Editar</span>
+                            </div>
+                        </button>
+                        <button onclick="showServersSection()" class="glass-effect hover-scale rounded-lg px-4 py-2 text-white text-sm font-medium transition-all duration-300">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/>
+                                </svg>
+                                <span>Servidores</span>
+                            </div>
+                        </button>
+                        <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover-scale">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                                <span>Sair</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Grid de Perfis das Ferramentas IA -->
+            <div id="aiToolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- ChatGPT -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142.0852-4.7735 2.7818a.7759.7759 0 0 0-.3927.6813v6.7369l-2.0201-1.1686a.0804.0804 0 0 1-.038-.0567V10.2916a4.4992 4.4992 0 0 1 7.3665-3.4958zm-5.6876 2.0201a.0757.0757 0 0 1 0-.1378L12.8204 8.364a.7948.7948 0 0 0-.7806 0L6.2611 11.6956v-2.3277a.0804.0804 0 0 1 .0332-.0615l4.8303-2.7865a4.4992 4.4992 0 0 1 6.1408 1.6464 4.4708 4.4708 0 0 1 .5346 3.0137z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">ChatGPT</h3>
+                            <p class="text-gray-300 text-sm">Assistente de IA conversacional</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Converse com a IA mais avançada do mundo. Perfeito para textos, códigos, análises e muito mais.</p>
+                    <button onclick="accessTool('https://chat.openai.com')" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar ChatGPT
+                    </button>
+                </div>
+
+                <!-- LM Arena -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">LM Arena</h3>
+                            <p class="text-gray-300 text-sm">Compare modelos de IA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Teste e compare diferentes modelos de linguagem em batalhas diretas para encontrar o melhor.</p>
+                    <button onclick="accessTool('https://lmarena.ai')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar LM Arena
+                    </button>
+                </div>
+
+                <!-- Leonardo AI -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Leonardo AI</h3>
+                            <p class="text-gray-300 text-sm">Geração de imagens com IA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Crie imagens incríveis com inteligência artificial. Arte, design e conceitos visuais profissionais.</p>
+                    <button onclick="accessTool('https://leonardo.ai')" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar Leonardo AI
+                    </button>
+                </div>
+
+                <!-- Canva -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v11a3 3 0 01-3 3zM7 21h7a2 2 0 002-2v-4a2 2 0 00-2-2H7m0-5h10a2 2 0 012 2v4a2 2 0 01-2 2H7V8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Canva</h3>
+                            <p class="text-gray-300 text-sm">Design gráfico simplificado</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Crie designs profissionais facilmente. Templates, logos, apresentações e muito mais.</p>
+                    <button onclick="accessTool('https://canva.com')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar Canva
+                    </button>
+                </div>
+
+                <!-- Google AI Studio -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Google AI Studio</h3>
+                            <p class="text-gray-300 text-sm">Plataforma de IA do Google</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Experimente os modelos Gemini do Google. Desenvolvimento e testes de aplicações com IA.</p>
+                    <button onclick="accessTool('https://aistudio.google.com')" class="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar Google AI Studio
+                    </button>
+                </div>
+
+                <!-- Flow -->
+                <div class="glass-effect rounded-2xl p-6 hover-scale transition-all duration-300 luxury-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Flow</h3>
+                            <p class="text-gray-300 text-sm">Automação e fluxos de trabalho</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Automatize processos e crie fluxos de trabalho inteligentes com integração de IA.</p>
+                    <button onclick="accessTool('https://flow.microsoft.com')" class="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300">
+                        Acessar Flow
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Seção de Dados -->
+            <div id="dataSection" class="space-y-4 mb-8 hidden">
+                <div class="glass-effect rounded-2xl p-6 luxury-shadow">
+                    <h2 class="text-2xl font-bold text-white mb-6">Dados do Sistema</h2>
+                    <div class="w-full">
+                        <!-- Emails com Status -->
+                        <div class="bg-gray-800 rounded-xl p-6">
+                            <h3 class="text-lg font-semibold text-white mb-4">Emails do Sistema</h3>
+                            <div class="space-y-3 max-h-96 overflow-y-auto" id="emailList">
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email1">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">emanuelvpaulino1@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email1')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email1">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email2">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Mcdomdom39@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email2')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email2">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email3">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino17@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email3')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email3">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino15@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email4')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email4">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email5">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Cajazeiraspbmemes@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email5')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email5">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email6">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino29@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email6')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email6">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email7">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino9@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email7')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email7">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email8">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">digitalexbrasil@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email8')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email8">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email9">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino26@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email9')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email9">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email10">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino27@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email10')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email10">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email11">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino28@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email11')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email11">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email12">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino30@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email12')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email12">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email13">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">emanuelvpaulino31@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email13')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email13">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email14">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino32@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email14')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email14">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email15">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino33@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email15')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email15">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email16">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">Emanuelvpaulino34@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email16')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email16">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email17">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">narradashistorias5@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email17')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email17">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email18">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">arthurdalmonteregis@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email18')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email18">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email19">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">menezesvictorr1@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email19')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email19">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email20">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">menezesvictor309@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email20')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email20">
+                                        Ativo
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg" data-id="email21">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <span class="text-white text-sm">veomenezes@gmail.com</span>
+                                    </div>
+                                    <button onclick="toggleEmailStatus('email21')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email21">
+                                        Ativo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 hidden edit-control">
+                        <div class="flex space-x-2">
+                            <input type="text" id="newDataInput" placeholder="Nova informação..." class="flex-1 bg-gray-800 text-white rounded-lg px-4 py-2">
+                            <button onclick="addData()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium">
+                                Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Servidores -->
+            <div id="serversSection" class="space-y-4 mb-8 hidden">
+                <div class="glass-effect rounded-2xl p-6 luxury-shadow">
+                    <h2 class="text-2xl font-bold text-white mb-6">Gerenciar Servidores</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800 rounded-xl p-4" id="serversList">
+                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded-lg mb-2" data-id="1">
+                                <span class="text-white">admin@empresa.com</span>
+                                <button onclick="deleteServer(1)" class="text-red-400 hover:text-red-300 hidden edit-control">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded-lg mb-2" data-id="2">
+                                <span class="text-white">suporte@empresa.com</span>
+                                <button onclick="deleteServer(2)" class="text-red-400 hover:text-red-300 hidden edit-control">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-gray-700 rounded-lg" data-id="3">
+                                <span class="text-white">vendas@empresa.com</span>
+                                <button onclick="deleteServer(3)" class="text-red-400 hover:text-red-300 hidden edit-control">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 hidden edit-control">
+                        <div class="flex space-x-2">
+                            <input type="email" id="newEmailInput" placeholder="novo@email.com" class="flex-1 bg-gray-800 text-white rounded-lg px-4 py-2">
+                            <button onclick="addServer()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium">
+                                Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Notificação -->
+    <div id="notification" class="fixed top-4 right-4 glass-effect rounded-xl p-4 text-white transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center" id="notificationIcon">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <div>
+                <p class="font-semibold" id="notificationTitle">Sucesso!</p>
+                <p class="text-sm text-gray-300" id="notificationMessage">Ação executada com sucesso</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let accessKey = '';
+        const correctKey = '96439129';
+        
+        // Atualizar horário em tempo real
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Animar contador de usuários
+        function animateCounter() {
+            const counter = document.getElementById('activeUsers');
+            if (!counter) return;
+            
+            const target = Math.floor(Math.random() * 500) + 1000;
+            let current = parseInt(counter.textContent.replace(',', ''));
+            
+            const increment = (target - current) / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current).toLocaleString('pt-BR');
+            }, 50);
+        }
+        
+        // Criar partículas flutuantes
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }, 500);
+        }
+        
+        // Mostrar notificação
+        function showNotification(title, message, isError = false) {
+            const notification = document.getElementById('notification');
+            const titleEl = document.getElementById('notificationTitle');
+            const messageEl = document.getElementById('notificationMessage');
+            const iconEl = document.getElementById('notificationIcon');
+            
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            if (isError) {
+                iconEl.className = 'w-8 h-8 bg-red-500 rounded-full flex items-center justify-center';
+                iconEl.innerHTML = '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+            } else {
+                iconEl.className = 'w-8 h-8 bg-green-500 rounded-full flex items-center justify-center';
+                iconEl.innerHTML = '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+            }
+            
+            notification.style.transform = 'translateX(0)';
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+            }, 3000);
+        }
+        
+        // Adicionar dígito à chave
+        function addDigit(digit) {
+            if (accessKey.length < 8) {
+                accessKey += digit;
+                updateKeyDisplay();
+                updateDots();
+            }
+        }
+        
+        // Remover último dígito
+        function removeDigit() {
+            if (accessKey.length > 0) {
+                accessKey = accessKey.slice(0, -1);
+                updateKeyDisplay();
+                updateDots();
+            }
+        }
+        
+        // Limpar chave
+        function clearKey() {
+            accessKey = '';
+            updateKeyDisplay();
+            updateDots();
+        }
+        
+        // Atualizar display da chave
+        function updateKeyDisplay() {
+            const display = document.getElementById('keyDisplay');
+            display.textContent = '•'.repeat(accessKey.length) + '•'.repeat(8 - accessKey.length);
+        }
+        
+        // Atualizar pontos indicadores
+        function updateDots() {
+            for (let i = 1; i <= 8; i++) {
+                const dot = document.getElementById(`dot${i}`);
+                if (i <= accessKey.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            }
+        }
+        
+        // Verificar acesso
+        function checkAccess() {
+            if (accessKey.length !== 8) {
+                showNotification('Erro de Acesso', 'Digite a chave completa de 8 dígitos', true);
+                shakePanel();
+                return;
+            }
+            
+            if (accessKey === correctKey) {
+                showNotification('Acesso Autorizado', 'Chave confirmada! Entrando...');
+                setTimeout(() => {
+                    document.getElementById('accessPanel').classList.add('hidden');
+                    document.getElementById('mainPanel').classList.remove('hidden');
+                }, 1500);
+            } else {
+                showNotification('Acesso Negado', 'Chave incorreta! Tente novamente.', true);
+                shakePanel();
+                setTimeout(() => {
+                    clearKey();
+                }, 1000);
+            }
+        }
+        
+        // Fazer painel tremer
+        function shakePanel() {
+            const panel = document.getElementById('accessPanel');
+            panel.classList.add('shake');
+            setTimeout(() => {
+                panel.classList.remove('shake');
+            }, 500);
+        }
+        
+        // Logout
+        function logout() {
+            showNotification('Logout', 'Saindo do sistema...');
+            setTimeout(() => {
+                document.getElementById('mainPanel').classList.add('hidden');
+                document.getElementById('accessPanel').classList.remove('hidden');
+                clearKey();
+            }, 1000);
+        }
+        
+        // Variáveis globais
+        let editMode = false;
+        let dataIdCounter = 4;
+        let serverIdCounter = 4;
+        
+        // Alternar modo de edição
+        function toggleEditMode() {
+            editMode = !editMode;
+            const editControls = document.querySelectorAll('.edit-control');
+            const editButton = document.getElementById('editButton');
+            
+            if (editMode) {
+                editControls.forEach(control => control.classList.remove('hidden'));
+                editButton.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Salvar</span>
+                    </div>
+                `;
+                editButton.classList.add('bg-green-600');
+                showNotification('Modo Edição', 'Modo de edição ativado! Você pode adicionar ou remover itens.');
+            } else {
+                editControls.forEach(control => control.classList.add('hidden'));
+                editButton.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        <span>Editar</span>
+                    </div>
+                `;
+                editButton.classList.remove('bg-green-600');
+                showNotification('Modo Visualização', 'Alterações salvas! Modo de edição desativado.');
+            }
+        }
+        
+        // Mostrar seção de dados
+        function showDataSection() {
+            document.getElementById('dataSection').classList.remove('hidden');
+            document.getElementById('serversSection').classList.add('hidden');
+            showNotification('Seção Dados', 'Visualizando dados do sistema');
+        }
+        
+        // Mostrar seção de servidores
+        function showServersSection() {
+            document.getElementById('dataSection').classList.add('hidden');
+            document.getElementById('serversSection').classList.remove('hidden');
+            showNotification('Seção Servidores', 'Gerenciando emails dos servidores');
+        }
+        
+        // Adicionar novo dado
+        function addData() {
+            const input = document.getElementById('newDataInput');
+            const value = input.value.trim();
+            
+            if (value) {
+                const dataList = document.getElementById('dataList');
+                const newItem = document.createElement('div');
+                newItem.className = 'flex justify-between items-center p-2 bg-gray-800 rounded-lg';
+                newItem.setAttribute('data-id', dataIdCounter);
+                newItem.innerHTML = `
+                    <span class="text-white">${value}</span>
+                    <button onclick="deleteData(${dataIdCounter})" class="text-red-400 hover:text-red-300 ${editMode ? '' : 'hidden'} edit-control">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </button>
+                `;
+                dataList.appendChild(newItem);
+                input.value = '';
+                dataIdCounter++;
+                showNotification('Dado Adicionado', 'Nova informação adicionada com sucesso!');
+            }
+        }
+        
+        // Deletar dado
+        function deleteData(id) {
+            const item = document.querySelector(`#dataList [data-id="${id}"]`);
+            if (item) {
+                item.remove();
+                showNotification('Dado Removido', 'Informação removida com sucesso!');
+            }
+        }
+        
+        // Adicionar novo servidor
+        function addServer() {
+            const input = document.getElementById('newEmailInput');
+            const email = input.value.trim();
+            
+            if (email && email.includes('@')) {
+                const serversList = document.getElementById('serversList');
+                const newItem = document.createElement('div');
+                newItem.className = 'flex justify-between items-center p-2 bg-gray-800 rounded-lg';
+                newItem.setAttribute('data-id', serverIdCounter);
+                newItem.innerHTML = `
+                    <span class="text-white">${email}</span>
+                    <button onclick="deleteServer(${serverIdCounter})" class="text-red-400 hover:text-red-300 ${editMode ? '' : 'hidden'} edit-control">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </button>
+                `;
+                serversList.appendChild(newItem);
+                input.value = '';
+                serverIdCounter++;
+                showNotification('Email Adicionado', 'Novo email de servidor adicionado!');
+            } else {
+                showNotification('Erro', 'Digite um email válido!', true);
+            }
+        }
+        
+        // Deletar servidor
+        function deleteServer(id) {
+            const item = document.querySelector(`#serversList [data-id="${id}"]`);
+            if (item) {
+                item.remove();
+                showNotification('Email Removido', 'Email removido com sucesso!');
+            }
+        }
+        
+        // Acessar ferramenta externa
+        function accessTool(url) {
+            showNotification('Redirecionando', 'Abrindo ferramenta em nova aba...');
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        
+        // Alternar status do email
+        function toggleEmailStatus(emailId) {
+            const button = document.getElementById(`btn-${emailId}`);
+            const emailRow = document.querySelector(`[data-id="${emailId}"]`);
+            const statusDot = emailRow.querySelector('.w-2.h-2');
+            
+            if (button.textContent.trim() === 'Ativo') {
+                // Desativar
+                button.textContent = 'Inativo';
+                button.className = 'bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300';
+                statusDot.className = 'w-2 h-2 bg-red-500 rounded-full';
+                showNotification('Email Desativado', 'Email foi desativado com sucesso');
+            } else {
+                // Ativar
+                button.textContent = 'Ativo';
+                button.className = 'bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300';
+                statusDot.className = 'w-2 h-2 bg-green-500 rounded-full';
+                showNotification('Email Ativado', 'Email foi ativado com sucesso');
+            }
+        }
+        
+        // Inicializar
+        updateTime();
+        setInterval(updateTime, 1000);
+        createParticles();
+        updateKeyDisplay();
+        
+        // Animar contador periodicamente
+        setInterval(animateCounter, 10000);
+        
+        // Permitir uso do teclado físico
+        document.addEventListener('keydown', function(event) {
+            if (document.getElementById('accessPanel').classList.contains('hidden')) return;
+            
+            if (event.key >= '0' && event.key <= '9') {
+                addDigit(event.key);
+            } else if (event.key === 'Backspace') {
+                removeDigit();
+            } else if (event.key === 'Enter') {
+                checkAccess();
+            } else if (event.key === 'Escape') {
+                clearKey();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b2961e57205cb7',t:'MTc1OTg5NDUwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
