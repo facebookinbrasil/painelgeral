@@ -234,6 +234,70 @@
                 </div>
             </header>
 
+            <!-- Aba de Criptomoedas (Lateral Esquerda) -->
+            <div id="cryptoTab" class="fixed left-0 top-1/2 transform -translate-y-1/2 z-40">
+                <!-- Botão da Aba -->
+                <button onclick="toggleCrypto()" id="cryptoTabButton" class="bg-gradient-to-b from-yellow-600 to-orange-600 text-white p-3 rounded-r-xl shadow-lg hover:from-yellow-700 hover:to-orange-700 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                        </svg>
+                        <span class="text-sm font-medium">Crypto</span>
+                        <div id="cryptoBadge" class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                </button>
+                
+                <!-- Painel de Criptomoedas -->
+                <div id="cryptoPanel" class="absolute left-full top-0 w-80 h-96 glass-effect rounded-r-2xl shadow-2xl transform -translate-x-full transition-transform duration-300 overflow-hidden">
+                    <div class="p-4 border-b border-gray-600">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-white">₿ Crypto Market</h3>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-xs text-green-400">Live</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Cotações em tempo real</p>
+                    </div>
+                    
+                    <div id="cryptoList" class="p-4 h-80 overflow-y-auto space-y-3">
+                        <!-- Criptomoedas serão inseridas aqui dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba de Notificações IA (Lateral Direita) -->
+            <div id="aiNotificationsTab" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-40">
+                <!-- Botão da Aba -->
+                <button onclick="toggleAINotifications()" id="aiTabButton" class="bg-gradient-to-b from-purple-600 to-indigo-600 text-white p-3 rounded-l-xl shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <span class="text-sm font-medium">IA News</span>
+                        <div id="notificationBadge" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    </div>
+                </button>
+                
+                <!-- Painel de Notificações -->
+                <div id="aiNotificationsPanel" class="absolute right-full top-0 w-80 h-96 glass-effect rounded-l-2xl shadow-2xl transform translate-x-full transition-transform duration-300 overflow-hidden">
+                    <div class="p-4 border-b border-gray-600">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-white">🤖 IA Updates</h3>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-xs text-green-400">Live</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Últimas novidades em IA</p>
+                    </div>
+                    
+                    <div id="aiNotificationsList" class="p-4 h-80 overflow-y-auto space-y-3">
+                        <!-- Notificações serão inseridas aqui dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
             <!-- Grid de Perfis das Ferramentas IA -->
             <div id="aiToolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- ChatGPT -->
@@ -507,7 +571,7 @@
                                     <div class="flex items-center space-x-2">
                                         <button onclick="copyEmail('Emanuelvpaulino26@gmail.com')" class="bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs transition-all duration-300" title="Copiar email">
                                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 0 00-2 2v8a2 2 0 002 2z"/>
                                             </svg>
                                         </button>
                                         <button onclick="toggleEmailStatus('email9')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-all duration-300" id="btn-email9">
@@ -785,6 +849,191 @@
         let accessKey = '';
         const correctKey = '96439129';
         
+        // Variáveis globais
+        let editMode = false;
+        let dataIdCounter = 4;
+        let serverIdCounter = 4;
+        let aiNotificationsOpen = false;
+        let aiUpdateInterval;
+        let cryptoOpen = false;
+        let cryptoUpdateInterval;
+        
+        // Base de dados de criptomoedas
+        const cryptoDatabase = [
+            {
+                symbol: 'BTC',
+                name: 'Bitcoin',
+                price: 97234.50,
+                change24h: 2.45,
+                icon: '₿',
+                color: 'text-orange-400'
+            },
+            {
+                symbol: 'ETH',
+                name: 'Ethereum',
+                price: 3456.78,
+                change24h: -1.23,
+                icon: 'Ξ',
+                color: 'text-blue-400'
+            },
+            {
+                symbol: 'BNB',
+                name: 'Binance Coin',
+                price: 712.34,
+                change24h: 0.87,
+                icon: '🔶',
+                color: 'text-yellow-400'
+            },
+            {
+                symbol: 'SOL',
+                name: 'Solana',
+                price: 234.56,
+                change24h: 4.12,
+                icon: '◎',
+                color: 'text-purple-400'
+            },
+            {
+                symbol: 'ADA',
+                name: 'Cardano',
+                price: 1.23,
+                change24h: -2.34,
+                icon: '₳',
+                color: 'text-blue-300'
+            },
+            {
+                symbol: 'XRP',
+                name: 'Ripple',
+                price: 2.45,
+                change24h: 8.76,
+                icon: '◉',
+                color: 'text-gray-400'
+            },
+            {
+                symbol: 'DOGE',
+                name: 'Dogecoin',
+                price: 0.42,
+                change24h: 12.34,
+                icon: '🐕',
+                color: 'text-yellow-300'
+            },
+            {
+                symbol: 'AVAX',
+                name: 'Avalanche',
+                price: 45.67,
+                change24h: -3.21,
+                icon: '🔺',
+                color: 'text-red-400'
+            },
+            {
+                symbol: 'DOT',
+                name: 'Polkadot',
+                price: 8.90,
+                change24h: 1.56,
+                icon: '●',
+                color: 'text-pink-400'
+            },
+            {
+                symbol: 'MATIC',
+                name: 'Polygon',
+                price: 0.98,
+                change24h: -0.45,
+                icon: '⬟',
+                color: 'text-purple-300'
+            }
+        ];
+        
+        // Base de dados simulada de atualizações de IA
+        const aiUpdatesDatabase = [
+            {
+                id: 1,
+                title: "🚀 Veo 3 Lançado!",
+                description: "Google lança Veo 3 com geração de vídeo ultra-realista",
+                link: "https://deepmind.google/technologies/veo/veo-3/",
+                type: "launch",
+                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 horas atrás
+                isNew: true
+            },
+            {
+                id: 2,
+                title: "🆓 Claude 3.5 Haiku Gratuito",
+                description: "Anthropic disponibiliza Claude 3.5 Haiku gratuitamente",
+                link: "https://claude.ai",
+                type: "free",
+                timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 horas atrás
+                isNew: true
+            },
+            {
+                id: 3,
+                title: "⚡ GPT-4o Mini Atualizado",
+                description: "OpenAI melhora performance do GPT-4o Mini",
+                link: "https://chat.openai.com",
+                type: "update",
+                timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8 horas atrás
+                isNew: false
+            },
+            {
+                id: 4,
+                title: "🎨 DALL-E 4 Beta",
+                description: "Nova versão do DALL-E em teste beta privado",
+                link: "https://openai.com/dall-e",
+                type: "beta",
+                timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000), // 12 horas atrás
+                isNew: false
+            },
+            {
+                id: 5,
+                title: "🔥 Gemini 2.0 Flash",
+                description: "Google lança Gemini 2.0 Flash com velocidade 2x maior",
+                link: "https://aistudio.google.com",
+                type: "launch",
+                timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 dia atrás
+                isNew: false
+            },
+            {
+                id: 6,
+                title: "🆓 Perplexity Pro Grátis",
+                description: "Perplexity oferece 1 mês grátis do plano Pro",
+                link: "https://perplexity.ai",
+                type: "free",
+                timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 dias atrás
+                isNew: false
+            }
+        ];
+        
+        // Simular novas atualizações periodicamente
+        const newUpdatesPool = [
+            {
+                title: "🤖 ChatGPT Canvas Melhorado",
+                description: "Nova interface Canvas com mais funcionalidades",
+                link: "https://chat.openai.com",
+                type: "update"
+            },
+            {
+                title: "🆓 Mistral Large Gratuito",
+                description: "Mistral AI libera acesso gratuito ao Large",
+                link: "https://mistral.ai",
+                type: "free"
+            },
+            {
+                title: "🚀 Sora Público",
+                description: "OpenAI libera Sora para todos os usuários",
+                link: "https://openai.com/sora",
+                type: "launch"
+            },
+            {
+                title: "⚡ Claude 4 Preview",
+                description: "Anthropic anuncia prévia do Claude 4",
+                link: "https://claude.ai",
+                type: "beta"
+            },
+            {
+                title: "🎨 Midjourney V7",
+                description: "Nova versão com qualidade fotorrealística",
+                link: "https://midjourney.com",
+                type: "launch"
+            }
+        ];
+        
         // Atualizar horário em tempo real
         function updateTime() {
             const now = new Date();
@@ -946,11 +1195,6 @@
                 clearKey();
             }, 1000);
         }
-        
-        // Variáveis globais
-        let editMode = false;
-        let dataIdCounter = 4;
-        let serverIdCounter = 4;
         
         // Alternar modo de edição
         function toggleEditMode() {
@@ -1132,29 +1376,153 @@
             });
         }
         
-        // Inicializar
-        updateTime();
-        setInterval(updateTime, 1000);
-        createParticles();
-        updateKeyDisplay();
-        
-        // Animar contador periodicamente
-        setInterval(animateCounter, 10000);
-        
-        // Permitir uso do teclado físico
-        document.addEventListener('keydown', function(event) {
-            if (document.getElementById('accessPanel').classList.contains('hidden')) return;
+        // Alternar aba de criptomoedas
+        function toggleCrypto() {
+            const panel = document.getElementById('cryptoPanel');
+            const button = document.getElementById('cryptoTabButton');
             
-            if (event.key >= '0' && event.key <= '9') {
-                addDigit(event.key);
-            } else if (event.key === 'Backspace') {
-                removeDigit();
-            } else if (event.key === 'Enter') {
-                checkAccess();
-            } else if (event.key === 'Escape') {
-                clearKey();
+            cryptoOpen = !cryptoOpen;
+            
+            if (cryptoOpen) {
+                panel.style.transform = 'translateX(0)';
+                button.style.transform = 'translateX(320px)';
+                loadCryptoData();
+                startCryptoUpdates();
+            } else {
+                panel.style.transform = 'translateX(-100%)';
+                button.style.transform = 'translateX(0)';
+                stopCryptoUpdates();
             }
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b29ad395725cb7',t:'MTc1OTg5NDcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+        }
+        
+        // Carregar dados das criptomoedas
+        function loadCryptoData() {
+            const container = document.getElementById('cryptoList');
+            container.innerHTML = '';
+            
+            cryptoDatabase.forEach(crypto => {
+                const cryptoEl = createCryptoElement(crypto);
+                container.appendChild(cryptoEl);
+            });
+        }
+        
+        // Criar elemento de criptomoeda
+        function createCryptoElement(crypto) {
+            const div = document.createElement('div');
+            const isPositive = crypto.change24h >= 0;
+            const changeColor = isPositive ? 'text-green-400' : 'text-red-400';
+            const changeIcon = isPositive ? '↗' : '↘';
+            const bgColor = isPositive ? 'bg-green-500/10' : 'bg-red-500/10';
+            
+            div.className = `p-3 rounded-lg ${bgColor} border border-gray-700 hover:border-gray-600 transition-all duration-300`;
+            
+            div.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg ${crypto.color}">${crypto.icon}</span>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">${crypto.symbol}</h4>
+                            <p class="text-xs text-gray-400">${crypto.name}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-semibold text-white">$${crypto.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs ${changeColor}">${changeIcon}</span>
+                            <span class="text-xs ${changeColor} font-medium">${Math.abs(crypto.change24h).toFixed(2)}%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-1">
+                    <div class="h-1 rounded-full transition-all duration-500 ${isPositive ? 'bg-green-500' : 'bg-red-500'}" 
+                         style="width: ${Math.min(Math.abs(crypto.change24h) * 8, 100)}%"></div>
+                </div>
+            `;
+            
+            return div;
+        }
+        
+        // Iniciar atualizações de crypto
+        function startCryptoUpdates() {
+            // Atualizar preços a cada 5 segundos (simulação)
+            cryptoUpdateInterval = setInterval(() => {
+                updateCryptoPrices();
+            }, 5000);
+        }
+        
+        // Parar atualizações de crypto
+        function stopCryptoUpdates() {
+            if (cryptoUpdateInterval) {
+                clearInterval(cryptoUpdateInterval);
+                cryptoUpdateInterval = null;
+            }
+        }
+        
+        // Atualizar preços das criptomoedas
+        function updateCryptoPrices() {
+            cryptoDatabase.forEach(crypto => {
+                // Simular variação de preço (-5% a +5%)
+                const variation = (Math.random() - 0.5) * 0.1; // -5% a +5%
+                const newPrice = crypto.price * (1 + variation);
+                
+                // Calcular nova variação 24h
+                const changeVariation = (Math.random() - 0.5) * 2; // -1% a +1%
+                const newChange = crypto.change24h + changeVariation;
+                
+                // Limitar variações extremas
+                crypto.price = Math.max(newPrice, crypto.price * 0.95);
+                crypto.change24h = Math.max(-15, Math.min(15, newChange));
+            });
+            
+            // Recarregar dados se a aba estiver aberta
+            if (cryptoOpen) {
+                loadCryptoData();
+            }
+            
+            // Mostrar notificação ocasional de mudança significativa
+            const significantChanges = cryptoDatabase.filter(crypto => Math.abs(crypto.change24h) > 5);
+            if (significantChanges.length > 0 && Math.random() < 0.3) {
+                const crypto = significantChanges[Math.floor(Math.random() * significantChanges.length)];
+                const direction = crypto.change24h > 0 ? 'subiu' : 'caiu';
+                showNotification(`${crypto.icon} ${crypto.symbol}`, `${direction} ${Math.abs(crypto.change24h).toFixed(1)}% nas últimas 24h`);
+            }
+        }
+        
+        // Alternar aba de notificações IA
+        function toggleAINotifications() {
+            const panel = document.getElementById('aiNotificationsPanel');
+            const button = document.getElementById('aiTabButton');
+            
+            aiNotificationsOpen = !aiNotificationsOpen;
+            
+            if (aiNotificationsOpen) {
+                panel.style.transform = 'translateX(0)';
+                button.style.transform = 'translateX(-320px)';
+                loadAINotifications();
+                startAIUpdates();
+            } else {
+                panel.style.transform = 'translateX(100%)';
+                button.style.transform = 'translateX(0)';
+                stopAIUpdates();
+            }
+        }
+        
+        // Carregar notificações de IA
+        function loadAINotifications() {
+            const container = document.getElementById('aiNotificationsList');
+            container.innerHTML = '';
+            
+            // Ordenar por timestamp (mais recente primeiro)
+            const sortedUpdates = [...aiUpdatesDatabase].sort((a, b) => b.timestamp - a.timestamp);
+            
+            sortedUpdates.forEach(update => {
+                const notificationEl = createNotificationElement(update);
+                container.appendChild(notificationEl);
+            });
+        }
+        
+        // Criar elemento de notificação
+        function createNotificationElement(update) {
+            const div = document.createElement('div');
+            div.className = `p-3 rounded-lg transition-all duration-300 cursor-pointer hover:scale-105 ${
+                update.isNew ? 'bg-gradient-to-r from-purple-600/20 to-indigo-600/20 border border-purple-500/<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b2a8c057e65cb7',t:'MTc1OTg5NTI3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
